@@ -63,5 +63,9 @@ public class DataSource {
                 .collect(Collectors.toList());
     }
 
+    public void save(Client client) {
+        this.dataList.add(client);
+    }
+
 
 }
