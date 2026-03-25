@@ -1,21 +1,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tlds/hello.tld" prefix="h"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Test project</title>
-</head>
-<body>
-<%--    <%--%>
-<%--       if(request.getAttribute("name") != null--%>
-<%--               && !request.getAttribute("name").equals("")) {--%>
-<%--    %>--%>
-<%--    <h1>Hello ${name}</h1>--%>
-<%--    <%--%>
-<%--        }--%>
-<%--    %>--%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
+<t:page title="Company">
     <c:if test="${name != null}">
         <h1>
 <%--            <c:out value="Hello ${name}"/>--%>
@@ -42,6 +29,4 @@
             </tr>
         </table>
     </form>
-
-</body>
-</html>
+</t:page>

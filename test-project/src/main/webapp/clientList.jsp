@@ -1,10 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>Client List</title>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
+<t:page title="Client list">
     <style>
         td {
             border: 1px solid black;
@@ -14,8 +11,6 @@
             font-weight: bold;
         }
     </style>
-</head>
-<body>
     <h1>List of the clients</h1>
     <table>
         <thead>
@@ -45,7 +40,6 @@
         </c:forEach>
         </tbody>
     </table>
-    <a href="${pageContext.request.contextPath}/personPayment">Person</a>
-    <a href="${pageContext.request.contextPath}/companyPayment">Company</a>
-</body>
-</html>
+<%--    <a href="${pageContext.request.contextPath}/personPayment">Person</a>--%>
+<%--    <a href="${pageContext.request.contextPath}/companyPayment">Company</a>--%>
+</t:page>
