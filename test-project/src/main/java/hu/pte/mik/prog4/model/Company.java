@@ -6,6 +6,9 @@ public class Company extends Client {
 
     private String taxNumber;
 
+    public Company() {
+    }
+
     public Company(Long id, String name, String address, String taxNumber) {
         super(id, name, address);
         this.taxNumber = taxNumber;

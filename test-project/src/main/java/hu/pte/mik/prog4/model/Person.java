@@ -6,6 +6,9 @@ public class Person extends Client {
 
     private String idNumber;
 
+    public Person() {
+    }
+
     public Person(Long id, String name, String address, String idNumber) {
         super(id, name, address);
         this.idNumber = idNumber;

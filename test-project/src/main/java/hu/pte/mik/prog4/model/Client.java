@@ -8,6 +8,9 @@ public abstract class Client {
     private String name;
     private String address;
 
+    public Client() {
+    }
+
     public Client(Long id, String name, String address) {
         this.id = id;
         this.name = name;
