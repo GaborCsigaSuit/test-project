@@ -53,6 +53,14 @@
                         <input type="submit" value="PAY!!!">
 
                     </form>
+                    <button type="button"
+                            onclick="pay(
+                                    '${client.getClass().getSimpleName() eq "Person" ? "person" : "company"}',
+                                    '${client.id}',
+                                    '${client.name}'
+                            )">
+                        Pay via AJAX
+                    </button>
                 </td>
             </tr>
         </c:forEach>
@@ -61,3 +69,20 @@
 <%--    <a href="${pageContext.request.contextPath}/personPayment">Person</a>--%>
 <%--    <a href="${pageContext.request.contextPath}/companyPayment">Company</a>--%>
 </t:page>
+<script>
+    function pay(type, id, name) {
+        let request = new XMLHttpRequest();
+        request.open("POST",
+            "${pageContext.request.contextPath}/api/" + type + "/" + id + "/payment");
+        request.setRequestHeader("Content-Type", "application/json");
+        request.onloadend = function () {
+            if(request.status === 200) {
+                window.alert(name + " payed as " + type);
+            } else {
+                window.alert("Some error occurred!");
+            }
+        }
+
+        request.send();
+    }
+</script>
