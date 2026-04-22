@@ -32,4 +32,17 @@ public class CompanyService implements ClientService<Company> {
     public void save(Company client) {
         this.companyRepository.save(client);
     }
+
+    @Override
+    public Company findById(Long id) {
+        return this.companyRepository.findById(id);
+    }
+
+    public Company update(Company company) {
+        return this.companyRepository.update(company);
+    }
+
+    public Company create(Company company) {
+        return this.companyRepository.create(company);
+    }
 }

@@ -33,4 +33,9 @@ public class PersonService implements ClientService<Person> {
     public void save(Person client) {
         this.personRepository.save(client);
     }
+
+    @Override
+    public Person findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

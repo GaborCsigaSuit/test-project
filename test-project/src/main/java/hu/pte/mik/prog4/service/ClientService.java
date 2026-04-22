@@ -15,4 +15,6 @@ public interface ClientService<T extends Client> {
 
     public void save(T client);
 
+    public T findById(Long id);
+
 }

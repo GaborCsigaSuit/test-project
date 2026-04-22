@@ -7,6 +7,8 @@ import hu.pte.mik.prog4.service.IdProvider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DataSource {
@@ -65,6 +67,37 @@ public class DataSource {
 
     public void save(Client client) {
         this.dataList.add(client);
+    }
+
+    public Company update(Company company) {
+        Optional<Client> existing = this.dataList.stream()
+                .filter(c -> Objects.equals(c.getId(), company.getId()))
+                .findFirst();
+
+        if(existing.isEmpty()) {
+            return null;
+        } else {
+            Client client = existing.get();
+            if(client instanceof Company) {
+                Company cmp =  (Company) client;
+                cmp.setName(company.getName());
+                cmp.setAddress(company.getAddress());
+                cmp.setTaxNumber(company.getTaxNumber());
+
+                return cmp;
+            } else {
+                throw new RuntimeException("Client with id: "
+                        + company.getId() + " is not a company.");
+            }
+        }
+
+    }
+
+    public Company create(Company company) {
+        company.setId(this.idProvider.nextId());
+
+        this.dataList.add(company);
+        return company;
     }
 
 
