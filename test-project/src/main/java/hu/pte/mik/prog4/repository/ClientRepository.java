@@ -8,7 +8,7 @@ public interface ClientRepository<T extends Client> {
 
     List<T> listAll();
 
-    void save(T client);
+    T save(T client);
 
     T findById(Long id);
 

@@ -4,18 +4,16 @@ import hu.pte.mik.prog4.model.Person;
 
 import java.util.List;
 
-public class PersonRepository implements ClientRepository<Person> {
-
-    private final DataSource dataSource = DataSource.getInstance();
+public class PersonRepository extends Repository implements ClientRepository<Person> {
 
     @Override
     public List<Person> listAll() {
-        return this.dataSource.getAllPerson();
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void save(Person client) {
-        this.dataSource.save(client);
+    public Person save(Person client) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
