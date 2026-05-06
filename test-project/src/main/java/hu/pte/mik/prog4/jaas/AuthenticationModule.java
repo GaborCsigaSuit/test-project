@@ -49,14 +49,16 @@ public class AuthenticationModule implements LoginModule {
 
             if(name != null) {
                 UserEntity userEntity = this.userRepository.findByUsername(name);
-                BCrypt.Result verify = BCrypt.verifyer().verify(password, userEntity.getPass());
-                if(verify.verified) {
-                    this.login = name;
-                    this.userGroups = this.roleRepository.findRolesByUser(userEntity.getId())
-                            .stream()
-                            .map(RoleEntity::getCode)
-                            .collect(Collectors.toList());
-                    return true;
+                if(userEntity != null) {
+                    BCrypt.Result verify = BCrypt.verifyer().verify(password, userEntity.getPass());
+                    if (verify.verified) {
+                        this.login = name;
+                        this.userGroups = this.roleRepository.findRolesByUser(userEntity.getId())
+                                .stream()
+                                .map(RoleEntity::getCode)
+                                .collect(Collectors.toList());
+                        return true;
+                    }
                 }
             }
 
