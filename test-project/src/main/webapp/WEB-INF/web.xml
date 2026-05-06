@@ -23,6 +23,11 @@
         <servlet-name>ClientListServlet</servlet-name>
         <servlet-class>hu.pte.mik.prog4.servlet.ClientListServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>hu.pte.mik.prog4.servlet.LogoutServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>
@@ -42,6 +47,11 @@
     <servlet-mapping>
         <servlet-name>ClientListServlet</servlet-name>
         <url-pattern>/clientList</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
     <filter>
@@ -68,4 +78,49 @@
         <servlet-name>jersey-servlet</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <description>ProjectServletContextListener</description>
+        <listener-class>hu.pte.mik.prog4.listener.ProjectServletContextListener</listener-class>
+    </listener>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Content</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>user</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>API</web-resource-name>
+            <url-pattern>/api/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>api</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>index</web-resource-name>
+            <url-pattern>/index.html</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+
+    <security-role>
+        <role-name>user</role-name>
+    </security-role>
+    <security-role>
+        <role-name>api</role-name>
+    </security-role>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/login_failed.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
 </web-app>
